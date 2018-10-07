@@ -43,5 +43,25 @@ class TodoListViewController: UITableViewController {
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    // barButton
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        var textField = UITextField();
+        let alert = UIAlertController(title: "Add New Dodo", message: "", preferredStyle: .alert);
+        let action = UIAlertAction(title: "Add", style: .default) { (UIAlertAction) in
+          
+            self.items.append(textField.text!);
+            self.tableView.reloadData();
+        }
+        
+        alert.addAction(action);
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Create Dodo";
+            textField = alertTextField;
+        }
+        
+        present(alert, animated: true, completion: nil);
+    }
+    
 }
 
